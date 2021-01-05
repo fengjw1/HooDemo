@@ -6,12 +6,17 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import com.alex.hoo.common.BaseConstant
 import com.alex.hoo.db.dao.FavouriteShoeDao
 import com.alex.hoo.db.dao.ShoeDao
 import com.alex.hoo.db.dao.UserDao
 import com.alex.hoo.db.data.FavouriteShoe
 import com.alex.hoo.db.data.Shoe
 import com.alex.hoo.db.data.User
+import com.alex.hoo.utils.AppPrefsUtils
+import com.alex.hoo.worker.ShoeWorker
 
 @Database(entities = [User::class, Shoe::class, FavouriteShoe::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
@@ -42,6 +47,12 @@ abstract class AppDataBase: RoomDatabase(){
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
 
+                        val isFirstLaunch = AppPrefsUtils.getBoolean(BaseConstant.IS_FIRST_LAUNCH)
+                        if (isFirstLaunch){
+                            // 读取鞋的集合
+                            val request = OneTimeWorkRequestBuilder<ShoeWorker>().build()
+                            WorkManager.getInstance().enqueue(request)
+                        }
                     }
                 }).build()
         }

@@ -8,7 +8,7 @@ import com.alex.hoo.viewmodel.LoginModel
 class LoginFragment : Fragment() {
 
     private val loginModel : LoginModel by viewModels {
-
+        
     }
 
 }

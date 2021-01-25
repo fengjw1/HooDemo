@@ -8,7 +8,7 @@ import javax.xml.transform.Source
 private const val SHOE_START_INDEX = 0
 
 class CustomPageDataSource (private val shoeRepository: ShoeRepository):
-    PagingSource<Int, Source>(){
+    PagingSource<Int, Shoe>(){
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Shoe> {
         val pos = params.key?: SHOE_START_INDEX //为空默认是0

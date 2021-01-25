@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.login_activity)
 
         savedInstanceState?.let {
             permissionRequestCount = it.getInt(KEY_PERMISSIONS_REQUEST_COUNT, 0)

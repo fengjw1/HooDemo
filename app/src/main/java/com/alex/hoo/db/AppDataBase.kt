@@ -18,7 +18,7 @@ import com.alex.hoo.db.data.User
 import com.alex.hoo.utils.AppPrefsUtils
 import com.alex.hoo.worker.ShoeWorker
 
-@Database(entities = [User::class, Shoe::class, FavouriteShoe::class], version = 1, exportSchema = false)
+@Database(entities = [User::class, Shoe::class, FavouriteShoe::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDataBase: RoomDatabase(){
 

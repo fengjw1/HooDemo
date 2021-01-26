@@ -49,7 +49,6 @@ class LoginFragment : Fragment() {
         if (isFirstLaunch){
             onFirstLaunch()
         }
-
         return binding.root
     }
 
